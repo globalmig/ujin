@@ -2,11 +2,11 @@ import Image from "next/image";
 
 export default function ContactSection() {
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section className="relative py-20 md:py-32 overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          background: "linear-gradient(rgba(10,30,70,0.75), rgba(10,30,70,0.82)), url('/image/bg_contact.jpg') center/cover no-repeat",
+          background: "linear-gradient(rgba(10,30,70,0.30), rgba(10,30,70,0.70)), url('/image/bg_contact.jpg') center/cover no-repeat",
         }}
       />
 
