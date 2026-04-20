@@ -30,7 +30,7 @@ export default function HeroSection() {
 
       {/* Text content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 md:px-16 max-w-[1440px] mx-auto text-center">
-        <p className="text-white/80 text-xs md:text-sm tracking-[0.3em] uppercase mb-3 [text-shadow:0_2px_8px_rgba(30,58,138,0.8)]">WELCOME TO YYUN COMPANY</p>
+        <p className="text-white/80 text-xs md:text-sm tracking-[0.3em] uppercase mb-3 [text-shadow:0_2px_8px_rgba(30,58,138,0.8)]">WELCOME TO YUJIN COMPANY</p>
         <h1 className="text-white text-2xl break-keep md:text-4xl lg:text-[42px] font-bold leading-snug mb-6 max-w-[1440px] [text-shadow:0_2px_16px_rgba(30,58,138,0.9)]">
           유진UPS는 외부의 어떤 변화에도
           <br />

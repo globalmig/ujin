@@ -24,7 +24,9 @@ export default function Header() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white shadow-md`}>
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between py-4">
         <Link className="flex items-center" href={"/"}>
-          <Image src="/image/logo.png" alt="유진전원시스템 로고" width={180} height={120} className="object-contain" />
+          <div className="relative w-40 h-12">
+            <Image src="/image/logo2.png" alt="유진전원시스템 로고" fill priority className="object-contain object-left" />
+          </div>
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">

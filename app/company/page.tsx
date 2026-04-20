@@ -5,7 +5,7 @@ export default function CompanyPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative w-full h-[320px] md:h-[420px] overflow-hidden mt-4">
+      <section className="relative w-full h-[320px] md:h-[420px] overflow-hidden ">
         <div className="absolute inset-0">
           <Image src="/image/company/bg_hero.png" alt="회사소개 배경" fill className="object-cover object-center" priority />
         </div>
