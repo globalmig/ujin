@@ -1,32 +1,19 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
+import PageHero from "../components/PageHero";
 
 export default function ContactPage() {
   const [agreed, setAgreed] = useState(false);
   return (
     <>
-      {/* Hero */}
-      <section className="relative w-full h-[320px] md:h-[420px] overflow-hidden">
-        <div className="absolute inset-0">
-          <Image src="/image/contact/bg_hero.jpg" alt="문의 배경" fill className="object-cover object-center " priority />
-        </div>
-        <div className="absolute inset-0 bg-black/45" />
-
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-          <p className="text-white/70 text-xs tracking-[0.35em] uppercase mb-3">COMPANY Contact</p>
-          <h1 className="text-white text-3xl md:text-4xl font-bold">문의하기</h1>
-          <div className="mt-5 flex items-center gap-2 text-white/60 text-xs">
-            <Link href="/" className="hover:text-white transition-colors">
-              HOME
-            </Link>
-            <span>›</span>
-            <span className="text-white">문의하기</span>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        imageSrc="/image/contact/bg_hero.jpg"
+        imageAlt="문의 배경"
+        eyebrow="COMPANY CONTACT"
+        title="문의하기"
+        breadcrumbs={[{ label: "문의하기" }]}
+      />
 
       {/* form section */}
       <section className="py-20 bg-white">

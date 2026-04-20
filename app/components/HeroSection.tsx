@@ -39,9 +39,17 @@ export default function HeroSection() {
       </div>
 
       {/* Slide dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex z-10">
         {Array.from({ length: total }).map((_, i) => (
-          <button key={i} onClick={() => setCurrent(i)} className={`w-2 h-2 rounded-full transition-all ${i === current ? "bg-white w-5" : "bg-white/50"}`} />
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            aria-label={`슬라이드 ${i + 1}로 이동`}
+            aria-current={i === current ? "true" : undefined}
+            className="py-5 px-2 flex items-center"
+          >
+            <span className={`h-2 rounded-full transition-all ${i === current ? "bg-white w-5" : "bg-white/50 w-2"}`} />
+          </button>
         ))}
       </div>
     </section>

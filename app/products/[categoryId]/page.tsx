@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import PageHero from "../../components/PageHero";
 import ProductSidebar from "../_components/ProductSidebar";
 import { categories, productImageMap, getImageSrc } from "../_components/categories";
 
@@ -18,38 +19,16 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative w-full h-80 md:h-105 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/image/products/bg_hero.jpg"
-            alt="제품 배경"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-        </div>
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-          <p className="text-white/70 text-xs tracking-[0.35em] uppercase mb-3">
-            PRODUCTS
-          </p>
-          <h1 className="text-white text-3xl md:text-4xl font-bold">
-            제품 소개
-          </h1>
-          <div className="mt-5 flex items-center gap-2 text-white/60 text-xs">
-            <Link href="/" className="hover:text-white transition-colors">
-              HOME
-            </Link>
-            <span>›</span>
-            <Link href="/products" className="hover:text-white transition-colors">
-              제품소개
-            </Link>
-            <span>›</span>
-            <span className="text-white">{category.label}</span>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        imageSrc="/image/products/bg_hero.jpg"
+        imageAlt="제품 배경"
+        eyebrow="PRODUCTS"
+        title="제품 소개"
+        breadcrumbs={[
+          { label: "제품소개", href: "/products" },
+          { label: category.label },
+        ]}
+      />
 
       {/* Content */}
       <section className="max-w-6xl mx-auto px-4 py-8 md:py-12 flex flex-col md:flex-row gap-4 md:gap-6 items-start">
@@ -58,13 +37,17 @@ export default async function CategoryPage({ params }: Props) {
         <div className="flex-1">
           {imageData ? (
             <div className="flex flex-col">
-              {imageData.images.map((filename) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+              {imageData.images.map((filename, idx) => (
+                <Image
                   key={filename}
                   src={getImageSrc(imageData.folder, filename)}
-                  alt={filename.replace(".png", "")}
-                  className="w-full block"
+                  alt={`${category.label} ${filename.replace(/^\d+\s/, "").replace(".png", "")}`}
+                  width={1100}
+                  height={800}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 800px"
+                  style={{ width: "100%", height: "auto" }}
+                  className="block"
+                  priority={idx === 0}
                 />
               ))}
               <Link

@@ -12,7 +12,7 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: "유진전압시스템 - UPS 전문기업",
+  title: "유진전원시스템 - UPS 전문기업",
   description: "유진UPS는 외부의 어떤 변화에도 365일 안심하고 지켜드립니다.",
 };
 

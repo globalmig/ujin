@@ -1,35 +1,24 @@
 import Image from "next/image";
-import Link from "next/link";
+import PageHero from "../components/PageHero";
+import ContactSection from "../components/ContactSection";
 
 export default function CompanyPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative w-full h-[320px] md:h-[420px] overflow-hidden ">
-        <div className="absolute inset-0">
-          <Image src="/image/company/bg_hero.png" alt="회사소개 배경" fill className="object-cover object-center" priority />
-        </div>
-        <div className="absolute inset-0 bg-black/45" />
-
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-          <p className="text-white/70 text-xs tracking-[0.35em] uppercase mb-3">COMPANY INTRODUCTION</p>
-          <h1 className="text-white text-3xl md:text-4xl font-bold">회사소개</h1>
-          <div className="mt-5 flex items-center gap-2 text-white/60 text-xs">
-            <Link href="/" className="hover:text-white transition-colors">
-              HOME
-            </Link>
-            <span>›</span>
-            <span className="text-white">회사소개</span>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        imageSrc="/image/company/bg_hero.png"
+        imageAlt="회사소개 배경"
+        eyebrow="COMPANY INTRODUCTION"
+        title="회사소개"
+        breadcrumbs={[{ label: "회사소개" }]}
+      />
 
       {/* Intro */}
       <section className="py-20 bg-white">
         <div className="max-w-[1100px] mx-auto px-6">
           <div className="flex flex-col gap-10">
             <div className="w-full rounded-2xl overflow-hidden shadow-lg">
-              <Image src="/image/company/main.png" alt="유진전원시스템 회사 이미지" width={1100} height={500} className="object-cover w-full" />
+              <Image src="/image/company/main.png" alt="유진전원시스템 본사 전경" width={1100} height={500} className="object-cover w-full" />
             </div>
 
             <div>
@@ -69,45 +58,12 @@ export default function CompanyPage() {
               </div>
             </div>
 
-            <Image src="/image/company/ceoname.jpg" alt="유진전원시스템 회사 이미지" width={260} height={200} />
+            <Image src="/image/company/ceoname.jpg" alt="대표이사 서명" width={260} height={200} />
           </div>
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section className="relative py-20 overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(rgba(10,30,70,0.75), rgba(10,30,70,0.82)), url('/image/bg_contact.jpg') center/cover no-repeat",
-          }}
-        />
-        <div className="absolute top-[-60px] right-[-60px] w-80 h-80 rounded-full border border-white/10" />
-        <div className="absolute top-[-30px] right-[-30px] w-60 h-60 rounded-full border border-white/10" />
-
-        <div className="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
-          <p className="text-white/60 text-xs tracking-widest uppercase mb-4">CUSTOMER CENTER</p>
-          <h2 className="text-white text-xl md:text-2xl font-bold leading-relaxed mb-3">궁금하신 사항이나 필요한 자료가 있으시다면</h2>
-          <p className="text-white text-xl md:text-2xl font-bold mb-10">언제든지 문의해주세요.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:028948057" className="flex items-center justify-center gap-3 bg-[#1a4fa0] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#0d3070] transition-colors">
-              02-894-8057
-            </a>
-            <a
-              href="mailto:ups8057@naver.com"
-              className="flex items-center justify-center gap-3 bg-[#4d8ef0] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#3a7ae0] transition-colors"
-            >
-              ups8057@naver.com
-            </a>
-            <a
-              href="/contact"
-              className="flex items-center justify-center gap-3 bg-white/10 border border-white/30 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-white/20 transition-colors"
-            >
-              고객 문의하기
-            </a>
-          </div>
-        </div>
-      </section>
+      <ContactSection />
     </>
   );
 }

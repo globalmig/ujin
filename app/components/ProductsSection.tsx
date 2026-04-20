@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 const products = [
   {
@@ -10,6 +11,7 @@ const products = [
     enName: "Uninterruptible Power Supply",
     image: "/image/card_ups.jpg",
     overlay: "rgba(26, 79, 160, 0.55)",
+    href: "/products/single-ups",
   },
   {
     id: 2,
@@ -18,6 +20,7 @@ const products = [
     enName: "Automatic Voltage Regulator",
     image: "/image/card_avr.jpg",
     overlay: "rgba(170, 90, 30, 0.50)",
+    href: "/products/avr",
   },
   {
     id: 3,
@@ -26,6 +29,7 @@ const products = [
     enName: "Frequency Converter",
     image: "/image/card_fc.jpg",
     overlay: "rgba(50, 140, 130, 0.55)",
+    href: "/products/frequency",
   },
   {
     id: 4,
@@ -34,6 +38,7 @@ const products = [
     enName: "Rectifier",
     image: "/image/card_정류기.jpg",
     overlay: "rgba(50, 130, 120, 0.55)",
+    href: "/products",
   },
 ];
 
@@ -54,65 +59,56 @@ export default function ProductsSection() {
 
     card.scrollIntoView({
       behavior: isFirstRender.current ? "auto" : "smooth",
-      inline: "start", // 핵심
+      inline: "start",
       block: "nearest",
     });
 
     isFirstRender.current = false;
   }, [current]);
 
+  const NavButtons = () => (
+    <div className="flex gap-2">
+      <button
+        type="button"
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={prev}
+        aria-label="이전 제품"
+        className="w-11 h-11 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-[#1a4fa0] hover:text-[#1a4fa0] transition-colors text-sm"
+      >
+        ←
+      </button>
+      <button
+        type="button"
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={next}
+        aria-label="다음 제품"
+        className="w-11 h-11 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-[#1a4fa0] hover:text-[#1a4fa0] transition-colors text-sm"
+      >
+        →
+      </button>
+    </div>
+  );
+
   return (
     <section className="py-20 md:py-32 bg-white px-4">
-      <div className="max-w-[1440px] mx-auto ">
+      <div className="max-w-360 mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-10">
           {/* Left text */}
-          <div className="lg:w-[400px] shrink-0 ">
+          <div className="lg:w-100 shrink-0">
             <p className="text-sm font-bold text-[#377AD0] tracking-widest uppercase mb-3">BUSINESS AREA</p>
             <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 leading-snug mb-4 md:mb-6">
               30년의 경험과 검증된 기술로
               <br /> 고객과 함께 합니다.
             </h2>
-            {/* Desktop only */}
-            <div className="hidden lg:flex gap-2">
-              <button
-                type="button"
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={prev}
-                className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-[#1a4fa0] hover:text-[#1a4fa0] transition-colors text-sm"
-              >
-                ←
-              </button>
-              <button
-                type="button"
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={next}
-                className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-[#1a4fa0] hover:text-[#1a4fa0] transition-colors text-sm"
-              >
-                →
-              </button>
+            <div className="hidden lg:flex">
+              <NavButtons />
             </div>
           </div>
 
           {/* Cards */}
           <div className="flex-1 min-w-0">
-            {/* Mobile only - buttons above cards */}
-            <div className="flex lg:hidden gap-2 mb-4">
-              <button
-                type="button"
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={prev}
-                className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-[#1a4fa0] hover:text-[#1a4fa0] transition-colors text-sm"
-              >
-                ←
-              </button>
-              <button
-                type="button"
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={next}
-                className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-[#1a4fa0] hover:text-[#1a4fa0] transition-colors text-sm"
-              >
-                →
-              </button>
+            <div className="flex lg:hidden mb-4">
+              <NavButtons />
             </div>
             <div ref={trackRef} className="flex gap-3 items-start overflow-x-auto lg:overflow-x-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {products.map((p, idx) => {
@@ -122,6 +118,10 @@ export default function ProductsSection() {
                   <div
                     key={p.id}
                     onClick={() => setCurrent(idx)}
+                    onKeyDown={(e) => e.key === "Enter" && setCurrent(idx)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${p.name} - ${p.desc}`}
                     className={`
                       shrink-0 relative overflow-hidden rounded-2xl cursor-pointer group
                       flex flex-col justify-between
@@ -145,9 +145,14 @@ export default function ProductsSection() {
                         <p className="text-white/60 text-[10px] leading-snug">{p.enName}</p>
                       </div>
                       <div className="flex justify-end">
-                        <div className="w-8 h-8 rounded-full bg-white/20 border border-white/40 flex items-center justify-center group-hover:bg-white/35 transition-colors">
-                          <span className="text-white text-xs">›</span>
-                        </div>
+                        <Link
+                          href={p.href}
+                          aria-label={`${p.name} 제품 페이지로 이동`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-11 h-11 rounded-full bg-white/20 border border-white/40 flex items-center justify-center hover:bg-white/35 transition-colors"
+                        >
+                          <span className="text-white text-xs" aria-hidden="true">›</span>
+                        </Link>
                       </div>
                     </div>
                   </div>

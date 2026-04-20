@@ -6,8 +6,6 @@ export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    window.scrollTo({ top: 0 });
-
     const handleScroll = () => {
       setVisible(window.scrollY > 300);
     };
