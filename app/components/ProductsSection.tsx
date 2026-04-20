@@ -57,13 +57,13 @@ export default function ProductsSection() {
     const card = el.children[current] as HTMLElement;
     if (!card) return;
 
-    card.scrollIntoView({
-      behavior: isFirstRender.current ? "auto" : "smooth",
-      inline: "start",
-      block: "nearest",
-    });
-
-    isFirstRender.current = false;
+    // scrollIntoView 대신 컨테이너 scrollLeft 직접 조작 — 페이지 세로 스크롤 영향 없음
+    if (isFirstRender.current) {
+      el.scrollLeft = card.offsetLeft;
+      isFirstRender.current = false;
+    } else {
+      el.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+    }
   }, [current]);
 
   const NavButtons = () => (

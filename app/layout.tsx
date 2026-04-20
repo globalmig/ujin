@@ -23,6 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={`${notoSansKr.variable} h-full`}>
+      <head>
+        {/* 렌더링 전 동기 실행 — 브라우저 스크롤 자동복원 비활성화 */}
+        <script dangerouslySetInnerHTML={{ __html: "history.scrollRestoration='manual'" }} />
+      </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <Header />
         <main className="flex-1 pt-[60px]">{children}</main>
