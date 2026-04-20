@@ -78,6 +78,12 @@ export default async function ProductDetailPage({ params }: Props) {
                   className="w-full block"
                 />
               ))}
+              <Link
+                href="/contact"
+                className="w-full py-5 bg-[#3d7bd4] text-white text-center font-semibold text-base hover:bg-[#2f6bbf] transition-colors block"
+              >
+                견적서 의뢰하기
+              </Link>
             </div>
           ) : (
             <div className="min-h-125 border border-gray-200 flex flex-col items-center justify-center bg-white p-10">

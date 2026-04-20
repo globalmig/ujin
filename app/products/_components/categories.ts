@@ -22,7 +22,7 @@ export const categories = [
   {
     id: "avr",
     label: "자동 전압 조정기 (AVR)",
-    items: ["단상단권 AVR"],
+    items: ["AVR"],
   },
   {
     id: "frequency",
@@ -113,7 +113,7 @@ export const productImageMap: Record<string, ImageEntry> = {
       "13 주의.png",
     ],
   },
-  "단상단권-avr": {
+  "avr": {
     folder: "단상단권_AVR",
     images: [
       "1 제품프로필.png",
