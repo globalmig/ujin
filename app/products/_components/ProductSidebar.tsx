@@ -1,69 +1,92 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { categories, toSlug } from "./categories";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
+import { categories } from "./categories";
 
 export default function ProductSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
   const segments = pathname.split("/").filter(Boolean);
   const activeCategoryId = segments[1] ?? categories[0].id;
-  const activeItemSlug = segments[2] ?? "";
+  const activeCategory = categories.find((c) => c.id === activeCategoryId);
 
   return (
-    <aside className="w-50 shrink-0">
-      <ul className="border border-gray-200">
-        {categories.map((category) => {
-          const isActive = activeCategoryId === category.id;
-          const firstItemSlug = category.items[0] ? toSlug(category.items[0]) : "";
-          return (
-            <li key={category.id}>
-              <Link
-                href={
-                  firstItemSlug
-                    ? `/products/${category.id}/${firstItemSlug}`
-                    : `/products/${category.id}`
-                }
-                className={`block px-4 py-3 text-sm font-semibold transition-colors border-b border-gray-200 ${
-                  isActive
-                    ? "bg-[#1c2d4f] text-white"
-                    : "bg-white text-gray-700 hover:bg-gray-50"
-                }`}
-              >
-                {category.label}
-              </Link>
+    <>
+      {/* PC: 세로 사이드바 */}
+      <aside className="hidden md:block w-50 shrink-0">
+        <ul className="border border-gray-200">
+          {categories.map((category) => {
+            const isActive = activeCategoryId === category.id;
+            return (
+              <li key={category.id}>
+                <Link
+                  href={`/products/${category.id}`}
+                  className={`block px-4 py-3 text-sm font-semibold transition-colors border-b border-gray-200 last:border-b-0 ${
+                    isActive
+                      ? "bg-[#1c2d4f] text-white"
+                      : "bg-white text-gray-700 hover:bg-gray-50"
+                  }`}
+                >
+                  {category.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </aside>
 
-              {isActive && category.items.length > 0 && (
-                <ul className="border-b border-gray-200">
-                  {category.items.map((item) => {
-                    const slug = toSlug(item);
-                    const isItemActive = activeItemSlug === slug;
-                    return (
-                      <li key={item}>
-                        <Link
-                          href={`/products/${category.id}/${slug}`}
-                          className={`w-full pl-6 pr-4 py-2.5 text-sm flex items-center gap-2 transition-colors ${
-                            isItemActive
-                              ? "bg-gray-100 text-[#1c6fc4] font-medium"
-                              : "bg-gray-50 text-gray-500 hover:bg-gray-100"
-                          }`}
-                        >
-                          <span
-                            className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                              isItemActive ? "bg-[#1c6fc4]" : "bg-gray-300"
-                            }`}
-                          />
-                          {item}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    </aside>
+      {/* 모바일/태블릿: 드롭다운 */}
+      <div className="md:hidden w-full relative">
+        <button
+          onClick={() => setDropdownOpen(!dropdownOpen)}
+          className="w-full flex items-center justify-between px-5 py-4 bg-[#1c2d4f] text-white text-base font-semibold"
+        >
+          <span>{activeCategory?.label}</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={`transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        {dropdownOpen && (
+          <ul className="absolute top-full left-0 right-0 z-20 border border-t-0 border-gray-200 bg-white shadow-lg">
+            {categories.map((category) => {
+              const isActive = activeCategoryId === category.id;
+              return (
+                <li key={category.id}>
+                  <button
+                    onClick={() => {
+                      router.push(`/products/${category.id}`);
+                      setDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-5 py-4 text-base font-medium border-b border-gray-100 last:border-b-0 transition-colors ${
+                      isActive
+                        ? "bg-gray-50 text-[#1c2d4f] font-semibold"
+                        : "text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    {category.label}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    </>
   );
 }

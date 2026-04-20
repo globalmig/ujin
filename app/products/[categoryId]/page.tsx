@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProductSidebar from "../_components/ProductSidebar";
-import { categories } from "../_components/categories";
+import { categories, productImageMap, getImageSrc } from "../_components/categories";
 
 interface Props {
   params: Promise<{ categoryId: string }>;
@@ -13,6 +13,8 @@ export default async function CategoryPage({ params }: Props) {
 
   const category = categories.find((c) => c.id === categoryId);
   if (!category) notFound();
+
+  const imageData = productImageMap[categoryId];
 
   return (
     <>
@@ -50,12 +52,34 @@ export default async function CategoryPage({ params }: Props) {
       </section>
 
       {/* Content */}
-      <section className="max-w-6xl mx-auto px-4 py-12 flex gap-6 items-start">
+      <section className="max-w-6xl mx-auto px-4 py-8 md:py-12 flex flex-col md:flex-row gap-4 md:gap-6 items-start">
         <ProductSidebar />
 
-        <div className="flex-1 min-h-125 border border-gray-200 flex flex-col items-center justify-center bg-white p-10">
-          <p className="text-gray-400 text-sm mb-4">{category.label}</p>
-          <p className="text-gray-400 text-sm">준비 중입니다.</p>
+        <div className="flex-1">
+          {imageData ? (
+            <div className="flex flex-col">
+              {imageData.images.map((filename) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={filename}
+                  src={getImageSrc(imageData.folder, filename)}
+                  alt={filename.replace(".png", "")}
+                  className="w-full block"
+                />
+              ))}
+              <Link
+                href="/contact"
+                className="w-full py-5 bg-[#3d7bd4] text-white text-center font-semibold text-base hover:bg-[#2f6bbf] transition-colors block"
+              >
+                견적서 의뢰하기
+              </Link>
+            </div>
+          ) : (
+            <div className="min-h-125 border border-gray-200 flex flex-col items-center justify-center bg-white p-10">
+              <p className="text-gray-400 text-sm mb-4">{category.label}</p>
+              <p className="text-gray-400 text-sm">준비 중입니다.</p>
+            </div>
+          )}
         </div>
       </section>
     </>

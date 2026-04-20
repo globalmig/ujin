@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm \"d:/file_hyebinkim/development/ujin/app/products/[categoryId]/[itemSlug]/page.tsx\")",
+      "Bash(rmdir \"d:/file_hyebinkim/development/ujin/app/products/[categoryId]/[itemSlug]\")"
+    ]
+  }
+}
