@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { name: "회사소개", href: "/company" },
   { name: "제품소개", href: "/products" },
-  { name: "문의하기", href: "/contact" },
+  { name: "견적서 의뢰하기", href: "/contact" },
 ];
 
 export default function Header() {
@@ -18,9 +18,10 @@ export default function Header() {
   // 메뉴 열릴 때 body 스크롤 잠금
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
-
 
   return (
     <>
@@ -28,14 +29,8 @@ export default function Header() {
         <div className="max-w-300 mx-auto px-6 flex items-center justify-between py-4">
           {/* 로고 */}
           <Link className="flex items-center" href="/">
-            <div className="relative w-40 h-12">
-              <Image
-                src="/image/logo2.png"
-                alt="유진전원시스템 로고"
-                fill
-                priority
-                className="object-contain object-left"
-              />
+            <div className="relative w-48 h-12">
+              <Image src="/image/logo2.png" alt="유진전원시스템 로고" fill priority className="object-contain object-left" />
             </div>
           </Link>
 
@@ -45,11 +40,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-[#4d8ef0] ${
-                  pathname.startsWith(item.href)
-                    ? "text-[#1a4fa0] font-semibold"
-                    : "text-[#333]"
-                }`}
+                className={`text-xl font-medium transition-colors hover:text-[#4d8ef0] ${pathname.startsWith(item.href) ? "text-[#1a4fa0] font-semibold" : "text-[#333]"}`}
               >
                 {item.name}
               </Link>
@@ -57,38 +48,16 @@ export default function Header() {
           </nav>
 
           {/* 모바일 햄버거 버튼 */}
-          <button
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="메뉴 열기"
-          >
-            <span
-              className={`block w-6 h-0.5 bg-[#1a4fa0] transition-all duration-300 origin-center ${
-                menuOpen ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-[#1a4fa0] transition-all duration-300 ${
-                menuOpen ? "opacity-0 scale-x-0" : ""
-              }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-[#1a4fa0] transition-all duration-300 origin-center ${
-                menuOpen ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
+          <button className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5" onClick={() => setMenuOpen(!menuOpen)} aria-label="메뉴 열기">
+            <span className={`block w-6 h-0.5 bg-[#1a4fa0] transition-all duration-300 origin-center ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-[#1a4fa0] transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-[#1a4fa0] transition-all duration-300 origin-center ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
           </button>
         </div>
       </header>
 
       {/* 모바일 풀스크린 메뉴 오버레이 */}
-      <div
-        className={`fixed inset-0 z-40 bg-white flex flex-col md:hidden transition-all duration-300 ${
-          menuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-      >
+      <div className={`fixed inset-0 z-40 bg-white flex flex-col md:hidden transition-all duration-300 ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
         {/* 상단 여백 (헤더 높이만큼) */}
         <div className="h-17 shrink-0" />
 
@@ -99,12 +68,8 @@ export default function Header() {
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className={`w-full text-center py-5 text-xl font-medium border-b border-gray-100 transition-all duration-300 ${
-                menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-              } ${
-                pathname.startsWith(item.href)
-                  ? "text-[#1a4fa0] font-bold"
-                  : "text-[#333]"
+              className={`w-full text-center py-5 text-xl font-medium border-b border-gray-100 transition-all duration-300 ${menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"} ${
+                pathname.startsWith(item.href) ? "text-[#1a4fa0] font-bold" : "text-[#333]"
               }`}
               style={{ transitionDelay: menuOpen ? `${i * 60}ms` : "0ms" }}
             >

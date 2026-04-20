@@ -7,13 +7,7 @@ export default function ContactPage() {
   const [agreed, setAgreed] = useState(false);
   return (
     <>
-      <PageHero
-        imageSrc="/image/contact/bg_hero.jpg"
-        imageAlt="문의 배경"
-        eyebrow="COMPANY CONTACT"
-        title="문의하기"
-        breadcrumbs={[{ label: "문의하기" }]}
-      />
+      <PageHero imageSrc="/image/contact/bg_hero.jpg" imageAlt="문의 배경" eyebrow="COMPANY CONTACT" title="견적서 의뢰하기" breadcrumbs={[{ label: "견적서 의뢰하기" }]} />
 
       {/* form section */}
       <section className="py-20 bg-white">

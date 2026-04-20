@@ -16,10 +16,22 @@ const slides = [
     alt: "유진전원시스템 메인 슬라이드 2",
     overlay: "bg-black/20",
   },
+  // {
+  //   pc: "/image/main_hero_3.jpg",
+  //   mobile: "/image/main_hero_3.jpg",
+  //   alt: "유진전원시스템 메인 슬라이드 3",
+  //   overlay: "bg-black/20",
+  // },
   {
-    pc: "/image/main_hero_3.jpg",
-    mobile: "/image/main_hero_3.jpg",
-    alt: "유진전원시스템 메인 슬라이드 3",
+    pc: "/image/main_hero_4.jpg",
+    mobile: "/image/main_hero_4.jpg",
+    alt: "유진전원시스템 메인 슬라이드 4",
+    overlay: "bg-black/20",
+  },
+  {
+    pc: "/image/main_hero_5.jpg",
+    mobile: "/image/main_hero_5.jpg",
+    alt: "유진전원시스템 메인 슬라이드 5",
     overlay: "bg-black/20",
   },
 ];

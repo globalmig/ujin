@@ -25,7 +25,7 @@ export default function ProductSidebar() {
               <li key={category.id}>
                 <Link
                   href={`/products/${category.id}`}
-                  className={`block px-4 py-3 text-sm font-semibold transition-colors border-b border-gray-200 last:border-b-0 ${
+                  className={`block px-4 py-3 text-base font-semibold transition-colors border-b border-gray-200 last:border-b-0 ${
                     isActive
                       ? "bg-[#1c2d4f] text-white"
                       : "bg-white text-gray-700 hover:bg-gray-50"
