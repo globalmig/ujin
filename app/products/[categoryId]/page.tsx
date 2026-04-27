@@ -1,9 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import PageHero from "../../components/PageHero";
 import ProductSidebar from "../_components/ProductSidebar";
-import { categories, productImageMap, getImageSrc } from "../_components/categories";
+import {
+  categories,
+  findCategory,
+  getParentCategory,
+  productImageMap,
+  getImageSrc,
+} from "../_components/categories";
 
 interface Props {
   params: Promise<{ categoryId: string }>;
@@ -12,9 +18,16 @@ interface Props {
 export default async function CategoryPage({ params }: Props) {
   const { categoryId } = await params;
 
-  const category = categories.find((c) => c.id === categoryId);
+  // 부모 카테고리 접근 시 첫 번째 하위 카테고리로 리다이렉트
+  const topLevel = categories.find((c) => c.id === categoryId);
+  if (topLevel?.children) {
+    redirect(`/products/${topLevel.children[0].id}`);
+  }
+
+  const category = findCategory(categoryId);
   if (!category) notFound();
 
+  const parentCategory = getParentCategory(categoryId);
   const imageData = productImageMap[categoryId];
 
   return (
@@ -26,6 +39,9 @@ export default async function CategoryPage({ params }: Props) {
         title="제품 소개"
         breadcrumbs={[
           { label: "제품소개", href: "/products" },
+          ...(parentCategory
+            ? [{ label: parentCategory.label, href: `/products/${parentCategory.children![0].id}` }]
+            : []),
           { label: category.label },
         ]}
       />

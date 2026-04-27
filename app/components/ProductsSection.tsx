@@ -33,12 +33,12 @@ const products = [
   },
   {
     id: 4,
-    name: "정류기",
-    desc: "직류 전원장치",
+    name: "배터리",
+    desc: "완전 무누액 밀폐형 제품",
     enName: "Rectifier",
     image: "/image/card_정류기.jpg",
     overlay: "rgba(50, 130, 120, 0.55)",
-    href: "/products",
+    href: "/products/battery-es",
   },
 ];
 
@@ -115,13 +115,11 @@ export default function ProductsSection() {
                 const isActive = idx === current;
                 const isEven = idx % 2 === 1;
                 return (
-                  <div
+                  <Link
                     key={p.id}
+                    href={p.href}
                     onClick={() => setCurrent(idx)}
-                    onKeyDown={(e) => e.key === "Enter" && setCurrent(idx)}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`${p.name} - ${p.desc}`}
+                    aria-label={`${p.name} - ${p.desc} 제품 페이지로 이동`}
                     className={`
                       shrink-0 relative overflow-hidden rounded-2xl cursor-pointer group
                       flex flex-col justify-between
@@ -145,17 +143,14 @@ export default function ProductsSection() {
                         <p className="text-white/60 text-[10px] leading-snug">{p.enName}</p>
                       </div>
                       <div className="flex justify-end">
-                        <Link
-                          href={p.href}
-                          aria-label={`${p.name} 제품 페이지로 이동`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="w-11 h-11 rounded-full bg-white/20 border border-white/40 flex items-center justify-center hover:bg-white/35 transition-colors"
-                        >
-                          <span className="text-white text-xs" aria-hidden="true">›</span>
-                        </Link>
+                        <div className="w-11 h-11 rounded-full bg-white/20 border border-white/40 flex items-center justify-center group-hover:bg-white/35 transition-colors">
+                          <span className="text-white text-xs" aria-hidden="true">
+                            ›
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
               <div className="shrink-0 w-[35%] md:w-[62%] lg:hidden" aria-hidden="true" />

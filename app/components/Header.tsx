@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { categories } from "@/app/products/_components/categories";
 
 const navItems = [
   { name: "회사소개", href: "/company" },
@@ -13,15 +14,29 @@ const navItems = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const pathname = usePathname();
+  const productsHoverRef = useRef(false);
+  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // 메뉴 열릴 때 body 스크롤 잠금
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  const handleProductsEnter = () => {
+    if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current);
+    setProductsDropdownOpen(true);
+  };
+
+  const handleProductsLeave = () => {
+    leaveTimerRef.current = setTimeout(() => {
+      setProductsDropdownOpen(false);
+    }, 150);
+  };
 
   return (
     <>
@@ -36,15 +51,53 @@ export default function Header() {
 
           {/* PC 네비게이션 */}
           <nav className="hidden md:flex items-center gap-10">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`text-xl font-medium transition-colors hover:text-[#4d8ef0] ${pathname.startsWith(item.href) ? "text-[#1a4fa0] font-semibold" : "text-[#333]"}`}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              if (item.href === "/products") {
+                return (
+                  <div
+                    key={item.href}
+                    className="relative"
+                    onMouseEnter={handleProductsEnter}
+                    onMouseLeave={handleProductsLeave}
+                  >
+                    <Link
+                      href={item.href}
+                      className={`text-xl font-medium transition-colors hover:text-[#4d8ef0] ${pathname.startsWith(item.href) ? "text-[#1a4fa0] font-semibold" : "text-[#333]"}`}
+                    >
+                      {item.name}
+                    </Link>
+
+                    {/* 드롭다운 */}
+                    <div
+                      className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ${productsDropdownOpen ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-1"}`}
+                    >
+                      <ul className="bg-white shadow-lg rounded-lg overflow-hidden min-w-max border border-gray-100">
+                        {categories.map((cat) => (
+                          <li key={cat.id}>
+                            <Link
+                              href={`/products/${cat.id}`}
+                              onClick={() => setProductsDropdownOpen(false)}
+                              className={`block px-6 py-3 text-base transition-colors hover:bg-[#eef3fb] hover:text-[#1a4fa0] ${pathname === `/products/${cat.id}` ? "bg-[#eef3fb] text-[#1a4fa0] font-semibold" : "text-[#333]"}`}
+                            >
+                              {cat.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`text-xl font-medium transition-colors hover:text-[#4d8ef0] ${pathname.startsWith(item.href) ? "text-[#1a4fa0] font-semibold" : "text-[#333]"}`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* 모바일 햄버거 버튼 */}
@@ -62,20 +115,49 @@ export default function Header() {
         <div className="h-17 shrink-0" />
 
         {/* 메뉴 링크 */}
-        <nav className="flex flex-col flex-1 justify-center items-center gap-2 px-8">
-          {navItems.map((item, i) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className={`w-full text-center py-5 text-xl font-medium border-b border-gray-100 transition-all duration-300 ${menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"} ${
-                pathname.startsWith(item.href) ? "text-[#1a4fa0] font-bold" : "text-[#333]"
-              }`}
-              style={{ transitionDelay: menuOpen ? `${i * 60}ms` : "0ms" }}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <nav className="flex flex-col flex-1 overflow-y-auto justify-center items-center gap-2 px-8">
+          {navItems.map((item, i) => {
+            if (item.href === "/products") {
+              return (
+                <div key={item.href} className="w-full border-b border-gray-100">
+                  <button
+                    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                    className={`w-full text-center py-5 text-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 ${menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"} ${pathname.startsWith(item.href) ? "text-[#1a4fa0] font-bold" : "text-[#333]"}`}
+                    style={{ transitionDelay: menuOpen ? `${i * 60}ms` : "0ms" }}
+                  >
+                    {item.name}
+                    <span className={`text-sm transition-transform duration-200 ${mobileProductsOpen ? "rotate-180" : ""}`}>▼</span>
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-300 ${mobileProductsOpen ? "max-h-screen" : "max-h-0"}`}>
+                    {categories.map((cat) => (
+                      <Link
+                        key={cat.id}
+                        href={`/products/${cat.id}`}
+                        onClick={() => { setMenuOpen(false); setMobileProductsOpen(false); }}
+                        className={`block text-center py-3 text-base transition-colors hover:text-[#1a4fa0] ${pathname === `/products/${cat.id}` ? "text-[#1a4fa0] font-semibold" : "text-[#555]"}`}
+                      >
+                        {cat.label}
+                      </Link>
+                    ))}
+                    <div className="pb-3" />
+                  </div>
+                </div>
+              );
+            }
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className={`w-full text-center py-5 text-xl font-medium border-b border-gray-100 transition-all duration-300 ${menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"} ${
+                  pathname.startsWith(item.href) ? "text-[#1a4fa0] font-bold" : "text-[#333]"
+                }`}
+                style={{ transitionDelay: menuOpen ? `${i * 60}ms` : "0ms" }}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
 
           <Link
             href="/contact"
