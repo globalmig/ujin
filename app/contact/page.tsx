@@ -109,6 +109,8 @@ export default function ContactPage() {
                   <option value="110">110V</option>
                   <option value="220">220V</option>
                   <option value="380">380V</option>
+                  <option value="440">440V</option>
+                  <option value="etc">기타</option>
                 </select>
               </div>
             </div>
@@ -122,6 +124,8 @@ export default function ContactPage() {
                   <option value="110">110V</option>
                   <option value="220">220V</option>
                   <option value="380">380V</option>
+                  <option value="440">440V</option>
+                  <option value="etc">기타</option>
                 </select>
               </div>
             </div>
@@ -157,14 +161,10 @@ export default function ContactPage() {
               <div className="flex-1 px-4 py-2 flex items-center">
                 <select name="capacity" className="w-full md:w-auto border border-gray-300 px-2 py-1 outline-none focus:border-[#1a4fa0] bg-white">
                   <option value="">용량을 선택하세요.</option>
-                  <option value="1kva">1KVA</option>
-                  <option value="2kva">2KVA</option>
                   <option value="3kva">3KVA</option>
                   <option value="5kva">5KVA</option>
+                  <option value="7.5kva">7.5KVA</option>
                   <option value="10kva">10KVA</option>
-                  <option value="20kva">20KVA</option>
-                  <option value="30kva">30KVA</option>
-                  <option value="etc">기타</option>
                 </select>
               </div>
             </div>
