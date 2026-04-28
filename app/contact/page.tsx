@@ -5,6 +5,38 @@ import PageHero from "../components/PageHero";
 
 export default function ContactPage() {
   const [agreed, setAgreed] = useState(false);
+  const [form, setForm] = useState({
+    company: "",
+    position: "",
+    manager: "",
+    tel1: "",
+    tel2: "",
+    tel3: "",
+    email1: "",
+    email2: "",
+    product: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = () => {
+    const missing: string[] = [];
+    if (!form.company.trim()) missing.push("상호");
+    if (!form.position.trim() || !form.manager.trim()) missing.push("직책/담당자");
+    if (!form.tel1.trim() || !form.tel2.trim() || !form.tel3.trim()) missing.push("전화번호");
+    if (!form.email1.trim() || !form.email2.trim()) missing.push("이메일");
+    if (!form.product) missing.push("제품선택");
+    if (!agreed) missing.push("개인정보취급방침 동의");
+
+    if (missing.length > 0) {
+      alert(`다음 필수 항목을 입력해 주세요:\n${missing.map((m) => `• ${m}`).join("\n")}`);
+      return;
+    }
+    // 제출 처리
+  };
+
   return (
     <>
       <PageHero imageSrc="/image/contact/bg_hero.jpg" imageAlt="문의 배경" eyebrow="COMPANY CONTACT" title="견적서 의뢰하기" breadcrumbs={[{ label: "견적서 의뢰하기" }]} />
@@ -12,7 +44,7 @@ export default function ContactPage() {
       {/* form section */}
       <section className="py-20 bg-white">
         <div className="max-w-[1100px] mx-auto px-6">
-          <p className="text-xs text-gray-500 text-right mb-2"><span className="text-red-500">*</span> 표시는 필수 입력 항목입니다.</p>
+          <p className="text-sm text-gray-500 text-left mb-2"><span className="text-red-500">*</span> 표시는 필수 입력 항목입니다.</p>
           <form className="w-full border border-gray-400 text-sm">
             {/* 상호 */}
             <div className="flex flex-col md:flex-row border-b border-gray-400">
@@ -20,7 +52,7 @@ export default function ContactPage() {
                 상호 <span className="text-red-500 ml-0.5">*</span>
               </span>
               <div className="flex-1 px-4 py-2 flex items-center">
-                <input type="text" name="company" className="w-full border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0]" />
+                <input type="text" name="company" value={form.company} onChange={handleChange} className="w-full border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0]" />
               </div>
             </div>
 
@@ -30,8 +62,8 @@ export default function ContactPage() {
                 직책/담당자 <span className="text-red-500 ml-0.5">*</span>
               </span>
               <div className="flex-1 px-4 py-2 flex items-center gap-3">
-                <input type="text" name="position" className="flex-1 md:flex-none md:w-45 border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0]" />
-                <input type="text" name="manager" className="flex-1 md:flex-none md:w-45 border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0]" />
+                <input type="text" name="position" value={form.position} onChange={handleChange} className="flex-1 md:flex-none md:w-45 border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0]" />
+                <input type="text" name="manager" value={form.manager} onChange={handleChange} className="flex-1 md:flex-none md:w-45 border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0]" />
               </div>
             </div>
 
@@ -41,11 +73,11 @@ export default function ContactPage() {
                 전화번호 <span className="text-red-500 ml-0.5">*</span>
               </span>
               <div className="flex-1 px-4 py-2 flex items-center gap-1">
-                <input type="text" name="tel1" maxLength={4} className="w-15 border border-gray-400 px-2 py-1 text-center outline-none focus:border-[#1a4fa0]" />
+                <input type="text" name="tel1" maxLength={4} value={form.tel1} onChange={handleChange} className="w-15 border border-gray-400 px-2 py-1 text-center outline-none focus:border-[#1a4fa0]" />
                 <span className="text-gray-400">-</span>
-                <input type="text" name="tel2" maxLength={4} className="w-20 border border-gray-400 px-2 py-1 text-center outline-none focus:border-[#1a4fa0]" />
+                <input type="text" name="tel2" maxLength={4} value={form.tel2} onChange={handleChange} className="w-20 border border-gray-400 px-2 py-1 text-center outline-none focus:border-[#1a4fa0]" />
                 <span className="text-gray-400">-</span>
-                <input type="text" name="tel3" maxLength={4} className="w-15 border border-gray-400 px-2 py-1 text-center outline-none focus:border-[#1a4fa0]" />
+                <input type="text" name="tel3" maxLength={4} value={form.tel3} onChange={handleChange} className="w-15 border border-gray-400 px-2 py-1 text-center outline-none focus:border-[#1a4fa0]" />
               </div>
             </div>
 
@@ -79,9 +111,9 @@ export default function ContactPage() {
                 이메일 <span className="text-red-500 ml-0.5">*</span>
               </span>
               <div className="flex-1 px-4 py-2 flex items-center gap-1">
-                <input type="text" name="email1" className="flex-1 md:flex-none md:w-35 border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0]" />
+                <input type="text" name="email1" value={form.email1} onChange={handleChange} className="flex-1 md:flex-none md:w-35 border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0]" />
                 <span className="text-gray-400">@</span>
-                <input type="text" name="email2" className="flex-1 md:flex-none md:w-40 border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0]" />
+                <input type="text" name="email2" value={form.email2} onChange={handleChange} className="flex-1 md:flex-none md:w-40 border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0]" />
               </div>
             </div>
 
@@ -91,7 +123,7 @@ export default function ContactPage() {
                 제품선택 <span className="text-red-500 ml-0.5">*</span>
               </span>
               <div className="flex-1 px-4 py-2 flex items-center">
-                <select name="product" className="w-full md:w-auto border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0] bg-white">
+                <select name="product" value={form.product} onChange={handleChange} className="w-full md:w-auto border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0] bg-white">
                   <option value="">제품을 선택하세요.</option>
                   <option value="ups">UPS</option>
                   <option value="avr">AVR</option>
@@ -208,7 +240,7 @@ export default function ContactPage() {
 
             {/* 기타내용 */}
             <div className="flex flex-col md:flex-row">
-              <span className="w-full md:w-35 shrink-0 bg-[#f5f7fa] px-4 py-3 font-medium text-gray-700 border-b border-gray-400 md:border-b-0 md:border-r flex items-start pt-3">기타내용 <span className="text-red-500 ml-0.5">*</span></span>
+              <span className="w-full md:w-35 shrink-0 bg-[#f5f7fa] px-4 py-3 font-medium text-gray-700 border-b border-gray-400 md:border-b-0 md:border-r flex items-start pt-3">기타내용</span>
               <div className="flex-1 px-4 py-2">
                 <textarea name="message" rows={8} className="w-full border border-gray-400 px-2 py-1 outline-none focus:border-[#1a4fa0] resize-none" />
               </div>
@@ -267,9 +299,9 @@ export default function ContactPage() {
 
           <div className="mt-6 flex justify-center">
             <button
-              type="submit"
-              disabled={!agreed}
-              className="bg-[#1a4fa0] text-white px-12 py-3 text-sm font-medium transition-colors hover:bg-[#0d3070] disabled:bg-gray-400 disabled:cursor-not-allowed"
+              type="button"
+              onClick={handleSubmit}
+              className="bg-[#1a4fa0] text-white px-12 py-3 text-sm font-medium transition-colors hover:bg-[#0d3070]"
             >
               문의하기
             </button>

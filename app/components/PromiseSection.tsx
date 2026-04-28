@@ -33,11 +33,11 @@ export default function PromiseSection() {
           완벽하게 운용할 수 있는 전원 시스템을 제공합니다.
         </p>
 
-        <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+        <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch">
           {promises.map((p, i) => (
             <div
               key={i}
-              className="w-[240px] h-[240px] rounded-full flex flex-col items-center justify-center gap-3 px-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 shrink-0"
+              className="w-full md:flex-1 lg:flex-none lg:w-60 lg:h-60 flex flex-col items-center justify-center gap-3 px-8 py-10 lg:py-0 rounded-2xl lg:rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
               style={{ backgroundColor: p.bg }}
             >
               <Image src={p.icon} alt={p.title} width={44} height={44} className="object-contain" />

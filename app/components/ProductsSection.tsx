@@ -42,31 +42,8 @@ const products = [
   },
 ];
 
-export default function ProductsSection() {
-  const [current, setCurrent] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const isFirstRender = useRef(true);
-
-  const prev = () => setCurrent((i) => (i - 1 + products.length) % products.length);
-  const next = () => setCurrent((i) => (i + 1) % products.length);
-
-  useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-
-    const card = el.children[current] as HTMLElement;
-    if (!card) return;
-
-    // scrollIntoView 대신 컨테이너 scrollLeft 직접 조작 — 페이지 세로 스크롤 영향 없음
-    if (isFirstRender.current) {
-      el.scrollLeft = card.offsetLeft;
-      isFirstRender.current = false;
-    } else {
-      el.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
-    }
-  }, [current]);
-
-  const NavButtons = () => (
+function NavButtons({ prev, next }: { prev: () => void; next: () => void }) {
+  return (
     <div className="flex gap-2">
       <button
         type="button"
@@ -88,6 +65,30 @@ export default function ProductsSection() {
       </button>
     </div>
   );
+}
+
+export default function ProductsSection() {
+  const [current, setCurrent] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
+
+  const prev = () => setCurrent((i) => (i - 1 + products.length) % products.length);
+  const next = () => setCurrent((i) => (i + 1) % products.length);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const card = el.children[current] as HTMLElement;
+    if (!card) return;
+
+    if (isFirstRender.current) {
+      el.scrollLeft = card.offsetLeft;
+      isFirstRender.current = false;
+    } else {
+      el.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+    }
+  }, [current]);
 
   return (
     <section className="py-20 md:py-32 bg-white px-4">
@@ -101,16 +102,16 @@ export default function ProductsSection() {
               <br /> 고객과 함께 합니다.
             </h2>
             <div className="hidden lg:flex">
-              <NavButtons />
+              <NavButtons prev={prev} next={next} />
             </div>
           </div>
 
           {/* Cards */}
           <div className="flex-1 min-w-0">
             <div className="flex lg:hidden mb-4">
-              <NavButtons />
+              <NavButtons prev={prev} next={next} />
             </div>
-            <div ref={trackRef} className="flex gap-3 items-start overflow-x-auto lg:overflow-x-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div ref={trackRef} className="relative flex gap-3 items-start overflow-x-auto lg:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {products.map((p, idx) => {
                 const isActive = idx === current;
                 const isEven = idx % 2 === 1;
