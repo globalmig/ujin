@@ -12,6 +12,7 @@ export default function ContactPage() {
       {/* form section */}
       <section className="py-20 bg-white">
         <div className="max-w-[1100px] mx-auto px-6">
+          <p className="text-xs text-gray-500 text-right mb-2"><span className="text-red-500">*</span> 표시는 필수 입력 항목입니다.</p>
           <form className="w-full border border-gray-300 text-sm">
             {/* 상호 */}
             <div className="flex flex-col md:flex-row border-b border-gray-300">
@@ -106,10 +107,11 @@ export default function ContactPage() {
               <div className="flex-1 px-4 py-2 flex items-center">
                 <select name="inputVoltage" className="w-full md:w-auto border border-gray-300 px-2 py-1 outline-none focus:border-[#1a4fa0] bg-white">
                   <option value="">입력전압을 선택하세요.</option>
-                  <option value="110">110V</option>
-                  <option value="220">220V</option>
-                  <option value="380">380V</option>
-                  <option value="440">440V</option>
+                  <option value="1p110">단상(1π 110V)</option>
+                  <option value="1p220">단상(1π 220V)</option>
+                  <option value="3p220">삼상(3π 220V)</option>
+                  <option value="3p380">삼상(3π 380V)</option>
+                  <option value="3p440">삼상(3π 440V)</option>
                   <option value="etc">기타</option>
                 </select>
               </div>
@@ -121,10 +123,11 @@ export default function ContactPage() {
               <div className="flex-1 px-4 py-2 flex items-center">
                 <select name="outputVoltage" className="w-full md:w-auto border border-gray-300 px-2 py-1 outline-none focus:border-[#1a4fa0] bg-white">
                   <option value="">출력전압을 선택하세요.</option>
-                  <option value="110">110V</option>
-                  <option value="220">220V</option>
-                  <option value="380">380V</option>
-                  <option value="440">440V</option>
+                  <option value="1p110">단상(1π 110V)</option>
+                  <option value="1p220">단상(1π 220V)</option>
+                  <option value="3p220">삼상(3π 220V)</option>
+                  <option value="3p380">삼상(3π 380V)</option>
+                  <option value="3p440">삼상(3π 440V)</option>
                   <option value="etc">기타</option>
                 </select>
               </div>
@@ -155,16 +158,31 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* 용량 */}
+            {/* 전격용량 */}
             <div className="flex flex-col md:flex-row border-b border-gray-300">
-              <span className="w-full md:w-35 shrink-0 bg-[#f5f7fa] px-4 py-3 font-medium text-gray-700 border-b border-gray-300 md:border-b-0 md:border-r flex items-center">용량</span>
+              <span className="w-full md:w-35 shrink-0 bg-[#f5f7fa] px-4 py-3 font-medium text-gray-700 border-b border-gray-300 md:border-b-0 md:border-r flex items-center">전격용량</span>
               <div className="flex-1 px-4 py-2 flex items-center">
                 <select name="capacity" className="w-full md:w-auto border border-gray-300 px-2 py-1 outline-none focus:border-[#1a4fa0] bg-white">
-                  <option value="">용량을 선택하세요.</option>
+                  <option value="">전격용량을 선택하세요.</option>
+                  <option value="1kva">1KVA</option>
+                  <option value="2kva">2KVA</option>
                   <option value="3kva">3KVA</option>
                   <option value="5kva">5KVA</option>
+                  <option value="6kva">6KVA</option>
                   <option value="7.5kva">7.5KVA</option>
                   <option value="10kva">10KVA</option>
+                  <option value="15kva">15KVA</option>
+                  <option value="20kva">20KVA</option>
+                  <option value="30kva">30KVA</option>
+                  <option value="40kva">40KVA</option>
+                  <option value="50kva">50KVA</option>
+                  <option value="60kva">60KVA</option>
+                  <option value="80kva">80KVA</option>
+                  <option value="100kva">100KVA</option>
+                  <option value="120kva">120KVA</option>
+                  <option value="160kva">160KVA</option>
+                  <option value="200kva">200KVA</option>
+                  <option value="etc">기타</option>
                 </select>
               </div>
             </div>
@@ -175,10 +193,14 @@ export default function ContactPage() {
               <div className="flex-1 px-4 py-2 flex items-center">
                 <select name="backup" className="w-full md:w-auto border border-gray-300 px-2 py-1 outline-none focus:border-[#1a4fa0] bg-white">
                   <option value="">백업시간을 선택하세요.</option>
+                  <option value="5">5분</option>
                   <option value="10">10분</option>
                   <option value="20">20분</option>
                   <option value="30">30분</option>
                   <option value="60">1시간</option>
+                  <option value="120">2시간</option>
+                  <option value="180">3시간</option>
+                  <option value="240">4시간</option>
                   <option value="etc">기타</option>
                 </select>
               </div>
@@ -186,7 +208,7 @@ export default function ContactPage() {
 
             {/* 기타내용 */}
             <div className="flex flex-col md:flex-row">
-              <span className="w-full md:w-35 shrink-0 bg-[#f5f7fa] px-4 py-3 font-medium text-gray-700 border-b border-gray-300 md:border-b-0 md:border-r flex items-start pt-3">기타내용</span>
+              <span className="w-full md:w-35 shrink-0 bg-[#f5f7fa] px-4 py-3 font-medium text-gray-700 border-b border-gray-300 md:border-b-0 md:border-r flex items-start pt-3">기타내용 <span className="text-red-500 ml-0.5">*</span></span>
               <div className="flex-1 px-4 py-2">
                 <textarea name="message" rows={8} className="w-full border border-gray-300 px-2 py-1 outline-none focus:border-[#1a4fa0] resize-none" />
               </div>
