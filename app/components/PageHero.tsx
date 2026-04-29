@@ -22,12 +22,13 @@ export default function PageHero({
   breadcrumbs,
 }: PageHeroProps) {
   return (
-    <section className="relative w-full h-[320px] md:h-[420px] overflow-hidden">
+    <section className="relative w-full h-80 md:h-105 overflow-hidden">
       <div className="absolute inset-0">
         <Image
           src={imageSrc}
           alt={imageAlt}
           fill
+          sizes="100vw"
           className="object-cover object-center"
           priority
         />

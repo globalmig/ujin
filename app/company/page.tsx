@@ -7,14 +7,9 @@ export default function CompanyPage() {
     <>
       <PageHero imageSrc="/image/company/bg_hero.png" imageAlt="회사소개 배경" eyebrow="COMPANY INTRODUCTION" title="회사소개" breadcrumbs={[{ label: "회사소개" }]} />
 
-      {/* Intro */}
       <section className="py-20 bg-white">
-        <div className="max-w-[1100px] mx-auto px-6">
+        <div className="max-w-275 mx-auto px-6">
           <div className="flex flex-col gap-10">
-            {/* <div className="w-full rounded-2xl overflow-hidden shadow-lg">
-              <Image src="/image/company/main.jpg" alt="유진전원시스템 본사 전경" width={1100} height={500} className="object-cover w-full" />
-            </div> */}
-
             <div>
               <p className="text-xs text-[#1a4fa0] tracking-widest uppercase mb-3">ABOUT US</p>
               <h2 className="text-2xl md:text-3xl font-bold leading-snug mb-5 bg-linear-to-r from-[#4d8ef0] to-[#1a4fa0] bg-clip-text text-transparent">
@@ -41,11 +36,7 @@ export default function CompanyPage() {
                 <p className="text-gray-800 font-bold text-sm leading-relaxed">
                   저희의 기술력은 UPS제조사의 구분을 가리지 않고 국산 및 수입 UPS의 그 어떤 것이라도 보수, 정비 및 유지관리가 가능합니다.
                 </p>
-                {/* <p className="text-gray-600 text-sm leading-relaxed">
-                  또한 1998년부터 도입한 <strong className="text-[#EE3636]">고객 무한대서비스</strong>의 시작으로 저희가 납품한 모든 UPS는 고객께서 책정하신 내용 연수가 끝날 때까지 무상A/S를 해드리고
-                  있습니다.
-                </p> */}
-                <p className="text-gray-600 text-sm leading-relaxed font-bold text-[#6AAF35]">
+                <p className="text-[#6AAF35] text-sm leading-relaxed font-bold">
                   궁금하신 사항이나 필요한 자료가 있으시면 언제든지 문의하여 주십시오. 친절하고 성실하게 상담해 드리겠습니다.
                 </p>
                 <p className="text-gray-600 text-sm leading-relaxed">감사합니다</p>

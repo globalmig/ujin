@@ -47,17 +47,17 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative w-full h-screen min-h-[500px] max-h-[700px] overflow-hidden">
+    <section className="relative w-full h-screen min-h-125 max-h-175 overflow-hidden">
       {/* 슬라이드 이미지 — 크로스페이드 */}
       {slides.map((slide, i) => (
         <div key={i} className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? "opacity-100" : "opacity-0"}`} aria-hidden={i !== current}>
           {/* PC */}
           <div className="absolute inset-0 hidden md:block">
-            <Image src={slide.pc} alt={slide.alt} fill className="object-cover object-center" priority={i === 0} />
+            <Image src={slide.pc} alt={slide.alt} fill sizes="100vw" className="object-cover object-center" priority={i === 0} />
           </div>
           {/* Mobile */}
           <div className="absolute inset-0 block md:hidden">
-            <Image src={slide.mobile} alt={slide.alt} fill className="object-cover object-center" priority={i === 0} />
+            <Image src={slide.mobile} alt={slide.alt} fill sizes="100vw" className="object-cover object-center" priority={i === 0} />
           </div>
           {/* 슬라이드별 어두운 오버레이 */}
           <div className={`absolute inset-0 ${slide.overlay}`} />
@@ -65,7 +65,7 @@ export default function HeroSection() {
       ))}
 
       {/* Text content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 md:px-16 max-w-[1440px] mx-auto text-center">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 md:px-16 max-w-360 mx-auto text-center">
         <p className="text-white/80 text-xs md:text-sm tracking-[0.3em] uppercase mb-3 [text-shadow:0_2px_8px_rgba(30,58,138,0.8)]">WELCOME TO YUJIN COMPANY</p>
         <h1 className="text-white text-2xl break-keep md:text-4xl lg:text-[42px] font-bold leading-snug mb-6 [text-shadow:0_2px_16px_rgba(30,58,138,0.9)]">
           유진UPS는 외부의 어떤 변화에도

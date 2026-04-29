@@ -24,7 +24,7 @@ const promises = [
 export default function PromiseSection() {
   return (
     <section className="py-20 md:py-32 bg-[#f0f4fa]">
-      <div className="max-w-[1200px] mx-auto px-6 text-center">
+      <div className="max-w-300 mx-auto px-6 text-center">
         <p className="text-sm font-bold text-[#377AD0] tracking-widest uppercase mb-4">BUSINESS PROMISE</p>
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">유진전원시스템의 약속</h2>
         <p className="text-gray-700 text-md leading-relaxed mb-14 max-w-md mx-auto">
@@ -40,7 +40,7 @@ export default function PromiseSection() {
               className="w-full md:flex-1 lg:flex-none lg:w-60 lg:h-60 flex flex-col items-center justify-center gap-3 px-8 py-10 lg:py-0 rounded-2xl lg:rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
               style={{ backgroundColor: p.bg }}
             >
-              <Image src={p.icon} alt={p.title} width={44} height={44} className="object-contain" />
+              <Image src={p.icon} alt={p.title} width={44} height={44} style={{ width: "44px", height: "44px" }} className="object-contain" />
               <h3 className="font-bold text-white text-base">{p.title}</h3>
               <p className="text-white/80 text-[11px] leading-relaxed text-center break-keep">{p.desc}</p>
             </div>

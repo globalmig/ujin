@@ -45,7 +45,7 @@ export default function Header() {
           {/* 로고 */}
           <Link className="flex items-center" href="/">
             <div className="relative w-48 h-12">
-              <Image src="/image/logo2.png" alt="유진전원시스템 로고" fill priority className="object-contain object-left" />
+              <Image src="/image/logo2.png" alt="유진전원시스템 로고" fill sizes="192px" priority className="object-contain object-left" />
             </div>
           </Link>
 
