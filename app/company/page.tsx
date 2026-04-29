@@ -1,6 +1,19 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "../components/PageHero";
 import ContactSection from "../components/ContactSection";
+
+export const metadata: Metadata = {
+  title: "회사소개",
+  description:
+    "유진전원시스템(주)은 30여 년간 UPS 제조 기술력으로 금융권·정부기관·기업체에 2,500여 대를 공급한 국산화 전문기업입니다.",
+  alternates: { canonical: "https://upscom.co.kr/company" },
+  openGraph: {
+    title: "회사소개 | 유진전원시스템",
+    description: "30여 년 UPS 제조 기술력, 2,500여 대 납품 실적의 전원장치 전문기업",
+    url: "https://upscom.co.kr/company",
+  },
+};
 
 export default function CompanyPage() {
   return (

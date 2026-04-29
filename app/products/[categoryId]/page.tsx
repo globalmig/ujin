@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
@@ -13,6 +14,31 @@ import {
 
 interface Props {
   params: Promise<{ categoryId: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { categoryId } = await params;
+  const category = findCategory(categoryId);
+  if (!category) return {};
+
+  const title = `${category.label} 제품소개`;
+  const description = `유진전원시스템의 ${category.label} 제품을 소개합니다. 30년 기술력의 고품질 전원장치.`;
+  const url = `https://upscom.co.kr/products/${categoryId}`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title: `${title} | 유진전원시스템`, description, url },
+  };
+}
+
+export async function generateStaticParams() {
+  return categories.flatMap((cat) =>
+    cat.children
+      ? cat.children.map((child) => ({ categoryId: child.id }))
+      : [{ categoryId: cat.id }]
+  );
 }
 
 export default async function CategoryPage({ params }: Props) {
