@@ -56,7 +56,7 @@ export default function CompanyPage() {
               </div>
             </div>
 
-            <Image src="/image/company/ceo-signature.jpg" alt="대표이사 서명" width={260} height={200} />
+            <Image src="/image/company/ceo-signature.jpg" alt="대표이사 서명" width={260} height={200} style={{ height: "auto" }} />
           </div>
         </div>
       </section>

@@ -104,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${notoSansKr.variable} h-full`} style={{ scrollBehavior: "smooth" }}>
+    <html lang="ko" className={`${notoSansKr.variable} h-full`} data-scroll-behavior="smooth" style={{ scrollBehavior: "smooth" }}>
       <head>
         <script
           dangerouslySetInnerHTML={{

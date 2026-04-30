@@ -53,11 +53,11 @@ export default function HeroSection() {
         <div key={i} className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? "opacity-100" : "opacity-0"}`} aria-hidden={i !== current}>
           {/* PC */}
           <div className="absolute inset-0 hidden md:block">
-            <Image src={slide.pc} alt={slide.alt} fill sizes="100vw" className="object-cover object-center" priority={i === 0} />
+            <Image src={slide.pc} alt={slide.alt} fill sizes="(max-width: 767px) 1vw, 100vw" className="object-cover object-center" priority={i === 0} />
           </div>
           {/* Mobile */}
           <div className="absolute inset-0 block md:hidden">
-            <Image src={slide.mobile} alt={slide.alt} fill sizes="100vw" className="object-cover object-center" priority={i === 0} />
+            <Image src={slide.mobile} alt={slide.alt} fill sizes="(max-width: 767px) 100vw, 1vw" className="object-cover object-center" priority={i === 0} />
           </div>
           {/* 슬라이드별 어두운 오버레이 */}
           <div className={`absolute inset-0 ${slide.overlay}`} />
