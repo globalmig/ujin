@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { categories } from "@/app/products/_components/categories";
+import { categories } from "@/lib/products";
 
 const navItems = [
   { name: "회사소개", href: "/company" },
@@ -45,7 +45,7 @@ export default function Header() {
           {/* 로고 */}
           <Link className="flex items-center" href="/">
             <div className="relative w-48 h-12">
-              <Image src="/image/logo2.png" alt="유진전원시스템 로고" fill sizes="192px" priority className="object-contain object-left" />
+              <Image src="/image/common/logo.png" alt="유진전원시스템 로고" fill sizes="192px" priority className="object-contain object-left" />
             </div>
           </Link>
 

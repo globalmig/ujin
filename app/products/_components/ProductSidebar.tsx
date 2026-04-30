@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { categories } from "./categories";
+import { categories } from "@/lib/products";
 
 export default function ProductSidebar() {
   const pathname = usePathname();

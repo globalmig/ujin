@@ -2,19 +2,19 @@ import Image from "next/image";
 
 const promises = [
   {
-    icon: "/image/icon_sild.svg",
+    icon: "/image/icons/shield.svg",
     title: "전원 안정",
     desc: "예기치 못한 정전과 전력 이상 상황에서도 안정적인 전원 공급을 유지합니다.",
     bg: "#3a5ca8",
   },
   {
-    icon: "/image/icon_battery.svg",
+    icon: "/image/icons/battery.svg",
     title: "전력 보호",
     desc: "노이즈, 서지, 정전 등 다양한 전력 문제로부터 장비와 시스템을 안전하게 보호합니다.",
     bg: "#4a7bc8",
   },
   {
-    icon: "/image/icon_setting.svg",
+    icon: "/image/icons/setting.svg",
     title: "유지관리",
     desc: "국산 및 수입 UPS를 포함한 전문적인 유지보수와 지속적인 관리 서비스를 제공합니다.",
     bg: "#6aaee0",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import PageHero from "../../components/PageHero";
+import PageHero from "@/components/PageHero";
 import ProductSidebar from "../_components/ProductSidebar";
 import {
   categories,
@@ -10,7 +10,7 @@ import {
   getParentCategory,
   productImageMap,
   getImageSrc,
-} from "../_components/categories";
+} from "@/lib/products";
 
 interface Props {
   params: Promise<{ categoryId: string }>;
@@ -59,7 +59,7 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <>
       <PageHero
-        imageSrc="/image/products/bg_hero.jpg"
+        imageSrc="/image/products/bg-hero.jpg"
         imageAlt="제품 배경"
         eyebrow="PRODUCTS"
         title="제품 소개"
@@ -83,7 +83,7 @@ export default async function CategoryPage({ params }: Props) {
                 <Image
                   key={filename}
                   src={getImageSrc(imageData.folder, filename)}
-                  alt={`${category.label} ${filename.replace(/^\d+\s/, "").replace(".png", "")}`}
+                  alt={`${category.label} ${filename.replace(/^\d+_/, "").replace(".png", "")}`}
                   width={1100}
                   height={800}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 800px"

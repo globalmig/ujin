@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import ScrollToTop from "./components/ScrollToTop";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
 const notoSansKr = Noto_Sans_KR({
@@ -14,13 +14,9 @@ const notoSansKr = Noto_Sans_KR({
 const BASE_URL = "https://upscom.co.kr";
 
 const SITE_TITLE = "유진전원시스템 - UPS 전문기업";
-const SITE_DESC =
-  "30년의 기술력으로 UPS, AVR, 주파수변환기(FC), 배터리를 " +
-  "공급하는 유진전원시스템입니다. 국산 및 수입 UPS 제조·유지보수 전문.";
-const SHORT_DESC =
-  "30년의 기술력으로 UPS, AVR, 주파수변환기, " +
-  "배터리를 공급하는 UPS 전문기업";
-const OG_IMAGE = "/image/main_pc_hero.jpg";
+const SITE_DESC = "30년의 기술력으로 UPS, AVR, 주파수변환기(FC), 배터리를 " + "공급하는 유진전원시스템입니다. 국산 및 수입 UPS 제조·유지보수 전문.";
+const SHORT_DESC = "30년의 기술력으로 UPS, AVR, 주파수변환기, " + "배터리를 공급하는 UPS 전문기업";
+const OG_IMAGE = "/image/common/og-image.jpg";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -29,11 +25,7 @@ export const metadata: Metadata = {
     template: "%s | 유진전원시스템",
   },
   description: SITE_DESC,
-  keywords: [
-    "UPS", "무정전전원장치", "AVR", "자동전압조정기",
-    "주파수변환기", "배터리", "유진전원시스템",
-    "유진UPS", "SPT", "정류기", "전원장치", "UPS전문기업",
-  ],
+  keywords: ["UPS", "무정전전원장치", "AVR", "자동전압조정기", "주파수변환기", "배터리", "유진전원시스템", "유진UPS", "SPT", "정류기", "전원장치", "UPS전문기업"],
   authors: [{ name: "유진전원시스템(주)", url: BASE_URL }],
   creator: "유진전원시스템(주)",
   publisher: "유진전원시스템(주)",
@@ -72,8 +64,7 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
   },
   verification: {
-    google: "",
-    other: { "naver-site-verification": "" },
+    other: { "naver-site-verification": "1a4f2727abb8c9544d3d471adb42d251b5011419" },
   },
 };
 
@@ -103,12 +94,7 @@ const jsonLd = {
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "전원장치 제품",
-    itemListElement: [
-      makeOffer("UPS (무정전전원장치)"),
-      makeOffer("AVR (자동전압조정기)"),
-      makeOffer("FC (주파수변환기)"),
-      makeOffer("배터리"),
-    ],
+    itemListElement: [makeOffer("UPS (무정전전원장치)"), makeOffer("AVR (자동전압조정기)"), makeOffer("FC (주파수변환기)"), makeOffer("배터리")],
   },
 };
 
@@ -118,11 +104,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ko"
-      className={`${notoSansKr.variable} h-full`}
-      style={{ scrollBehavior: "smooth" }}
-    >
+    <html lang="ko" className={`${notoSansKr.variable} h-full`} style={{ scrollBehavior: "smooth" }}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -136,10 +118,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className="min-h-full flex flex-col"
-        suppressHydrationWarning
-      >
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <Header />
         <main className="flex-1 pt-15">{children}</main>
         <Footer />

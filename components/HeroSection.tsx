@@ -5,32 +5,32 @@ import Image from "next/image";
 
 const slides = [
   {
-    pc: "/image/main_pc_hero.jpg",
-    mobile: "/image/main_mo_hero.jpg",
+    pc: "/image/home/slide-1-pc.jpg",
+    mobile: "/image/home/slide-1-mobile.jpg",
     alt: "유진전원시스템 메인 슬라이드 1",
     overlay: "bg-black/0",
   },
   {
-    pc: "/image/main_hero_2.jpg",
-    mobile: "/image/main_hero_2.jpg",
+    pc: "/image/home/slide-2.jpg",
+    mobile: "/image/home/slide-2.jpg",
     alt: "유진전원시스템 메인 슬라이드 2",
     overlay: "bg-black/20",
   },
   // {
-  //   pc: "/image/main_hero_3.jpg",
-  //   mobile: "/image/main_hero_3.jpg",
+  //   pc: "/image/home/slide-3.jpg",
+  //   mobile: "/image/home/slide-3.jpg",
   //   alt: "유진전원시스템 메인 슬라이드 3",
   //   overlay: "bg-black/20",
   // },
   {
-    pc: "/image/main_hero_4.jpg",
-    mobile: "/image/main_hero_4.jpg",
+    pc: "/image/home/slide-4.jpg",
+    mobile: "/image/home/slide-4.jpg",
     alt: "유진전원시스템 메인 슬라이드 4",
     overlay: "bg-black/20",
   },
   {
-    pc: "/image/main_hero_5.jpg",
-    mobile: "/image/main_hero_5.jpg",
+    pc: "/image/home/slide-5.jpg",
+    mobile: "/image/home/slide-5.jpg",
     alt: "유진전원시스템 메인 슬라이드 5",
     overlay: "bg-black/20",
   },

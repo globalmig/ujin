@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import PageHero from "../components/PageHero";
+import PageHero from "@/components/PageHero";
 
 const INITIAL_FORM = {
   company: "", position: "", manager: "",
@@ -58,7 +58,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHero imageSrc="/image/contact/bg_hero.jpg" imageAlt="문의 배경" eyebrow="COMPANY CONTACT" title="견적서 의뢰하기" breadcrumbs={[{ label: "견적서 의뢰하기" }]} />
+      <PageHero imageSrc="/image/contact/bg-hero.jpg" imageAlt="문의 배경" eyebrow="COMPANY CONTACT" title="견적서 의뢰하기" breadcrumbs={[{ label: "견적서 의뢰하기" }]} />
 
       {/* form section */}
       <section className="py-20 bg-white">

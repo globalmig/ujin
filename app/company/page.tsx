@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import PageHero from "../components/PageHero";
-import ContactSection from "../components/ContactSection";
+import PageHero from "@/components/PageHero";
+import ContactSection from "@/components/ContactSection";
 
 export const metadata: Metadata = {
   title: "회사소개",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function CompanyPage() {
   return (
     <>
-      <PageHero imageSrc="/image/company/bg_hero.png" imageAlt="회사소개 배경" eyebrow="COMPANY INTRODUCTION" title="회사소개" breadcrumbs={[{ label: "회사소개" }]} />
+      <PageHero imageSrc="/image/company/bg-hero.png" imageAlt="회사소개 배경" eyebrow="COMPANY INTRODUCTION" title="회사소개" breadcrumbs={[{ label: "회사소개" }]} />
 
       <section className="py-20 bg-white">
         <div className="max-w-275 mx-auto px-6">
@@ -56,7 +56,7 @@ export default function CompanyPage() {
               </div>
             </div>
 
-            <Image src="/image/company/ceoname.jpg" alt="대표이사 서명" width={260} height={200} />
+            <Image src="/image/company/ceo-signature.jpg" alt="대표이사 서명" width={260} height={200} />
           </div>
         </div>
       </section>

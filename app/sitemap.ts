@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { categories } from "./products/_components/categories";
+import { categories } from "@/lib/products";
 
 const BASE_URL = "https://upscom.co.kr";
 

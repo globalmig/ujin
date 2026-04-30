@@ -7,7 +7,7 @@ export default function ContactSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          background: "linear-gradient(rgba(10,30,70,0.30), rgba(10,30,70,0.70)), url('/image/bg_contact.jpg') center/cover no-repeat",
+          background: "linear-gradient(rgba(10,30,70,0.30), rgba(10,30,70,0.70)), url('/image/common/bg-contact.jpg') center/cover no-repeat",
         }}
       />
 
@@ -22,15 +22,15 @@ export default function ContactSection() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="tel:028948057" className="flex items-center justify-center gap-3 bg-[#1a4fa0] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#0d3070] transition-colors">
-            <Image src="/image/icon_line_call.svg" alt="전화 문의" width={20} height={20} style={{ width: "20px", height: "20px" }} />
+            <Image src="/image/icons/call.svg" alt="전화 문의" width={20} height={20} style={{ width: "20px", height: "20px" }} />
             02-894-8057
           </a>
           <a href="mailto:ups8057@naver.com" className="flex items-center justify-center gap-3 bg-[#4d8ef0] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#3a7ae0] transition-colors">
-            <Image src="/image/icon_line_mail.svg" alt="이메일 문의" width={20} height={20} style={{ width: "20px", height: "20px" }} />
+            <Image src="/image/icons/mail.svg" alt="이메일 문의" width={20} height={20} style={{ width: "20px", height: "20px" }} />
             ups8057@naver.com
           </a>
           <Link href="/contact" className="flex items-center justify-center gap-3 bg-white/10 border border-white/30 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-white/20 transition-colors">
-            <Image src="/image/icon_line_list.svg" alt="" width={20} height={20} style={{ width: "20px", height: "20px" }} />
+            <Image src="/image/icons/list.svg" alt="" width={20} height={20} style={{ width: "20px", height: "20px" }} />
             고객 문의하기
           </Link>
         </div>
