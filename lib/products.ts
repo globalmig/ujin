@@ -1,14 +1,22 @@
-export type SubCategory = { id: string; label: string };
+export type SubCategory = { id: string; label: string; href?: string };
 export type Category = {
   id: string;
   label: string;
+  selfPage?: boolean;
   children?: SubCategory[];
 };
 
 export const categories: Category[] = [
   { id: "single-ups", label: "단상 UPS" },
   { id: "three-single-ups", label: "삼상 / 단상 UPS" },
-  { id: "three-three-ups", label: "삼상 / 삼상 UPS" },
+  {
+    id: "three-three-ups",
+    label: "삼상 / 삼상 UPS",
+    selfPage: true,
+    children: [
+      { id: "three-three-ups-display", label: "디스플레이 상세보기", href: "/products/three-three-ups/display" },
+    ],
+  },
   { id: "server-ups", label: "PC서버용 UPS" },
   { id: "avr", label: "자동 전압 조정기 (AVR)" },
   { id: "frequency", label: "주파수 변환기" },
@@ -48,7 +56,7 @@ export const productImageMap: Record<string, ImageEntry> = {
   },
   "three-three-ups": {
     folder: "SPT-3300_three-three-ups",
-    images: ["1_product-profile.png", "2_problem.png", "3_strengths.png", "4_features.png", "5_field-cases.png", "6_maintenance.png", "7_display.png", "8_tech-specs.png"],
+    images: ["1_product-profile.png", "2_problem.png", "3_strengths.png", "4_features.png", "5_field-cases.png", "6_maintenance.png", "7_display2.png", "8_tech-specs.png"],
   },
   "server-ups": {
     folder: "HP-900C_server-ups",
@@ -72,7 +80,7 @@ export const productImageMap: Record<string, ImageEntry> = {
   },
   frequency: {
     folder: "NFS-2000_frequency",
-    images: ["1_product-profile.png", "2_problem.png", "3_strengths.png", "4_features.png", "6_maintenance.png", "7_tech-specs.png"],
+    images: ["1_product-profile.png", "2_problem.png", "3_strengths.png", "4_features.png", "5_field-cases.png", "6_maintenance.png", "7_tech-specs.png"],
   },
   "battery-es": {
     folder: "ES-Series_battery-es",
@@ -84,5 +92,4 @@ export const productImageMap: Record<string, ImageEntry> = {
   },
 };
 
-export const getImageSrc = (folder: string, filename: string) =>
-  `/image/products/${folder}/${filename}`;
+export const getImageSrc = (folder: string, filename: string) => `/image/products/${folder}/${filename}`;

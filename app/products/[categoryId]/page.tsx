@@ -4,13 +4,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import PageHero from "@/components/PageHero";
 import ProductSidebar from "../_components/ProductSidebar";
-import {
-  categories,
-  findCategory,
-  getParentCategory,
-  productImageMap,
-  getImageSrc,
-} from "@/lib/products";
+import { categories, findCategory, getParentCategory, productImageMap, getImageSrc } from "@/lib/products";
 
 interface Props {
   params: Promise<{ categoryId: string }>;
@@ -34,11 +28,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  return categories.flatMap((cat) =>
-    cat.children
-      ? cat.children.map((child) => ({ categoryId: child.id }))
-      : [{ categoryId: cat.id }]
-  );
+  return categories.flatMap((cat) => {
+    if (cat.children) {
+      const childParams = cat.children.filter((c) => !c.href).map((c) => ({ categoryId: c.id }));
+      return cat.selfPage ? [{ categoryId: cat.id }, ...childParams] : childParams;
+    }
+    return [{ categoryId: cat.id }];
+  });
 }
 
 export default async function CategoryPage({ params }: Props) {
@@ -46,7 +42,7 @@ export default async function CategoryPage({ params }: Props) {
 
   // 부모 카테고리 접근 시 첫 번째 하위 카테고리로 리다이렉트
   const topLevel = categories.find((c) => c.id === categoryId);
-  if (topLevel?.children) {
+  if (topLevel?.children && !topLevel.selfPage) {
     redirect(`/products/${topLevel.children[0].id}`);
   }
 
@@ -65,9 +61,7 @@ export default async function CategoryPage({ params }: Props) {
         title="제품 소개"
         breadcrumbs={[
           { label: "제품소개", href: "/products" },
-          ...(parentCategory
-            ? [{ label: parentCategory.label, href: `/products/${parentCategory.children![0].id}` }]
-            : []),
+          ...(parentCategory ? [{ label: parentCategory.label, href: `/products/${parentCategory.children![0].id}` }] : []),
           { label: category.label },
         ]}
       />
@@ -80,22 +74,30 @@ export default async function CategoryPage({ params }: Props) {
           {imageData ? (
             <div className="flex flex-col">
               {imageData.images.map((filename, idx) => (
-                <Image
-                  key={filename}
-                  src={getImageSrc(imageData.folder, filename)}
-                  alt={`${category.label} ${filename.replace(/^\d+_/, "").replace(".png", "")}`}
-                  width={1100}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 800px"
-                  style={{ width: "100%", height: "auto" }}
-                  className="block"
-                  priority={idx === 0}
-                />
+                <div key={filename}>
+                  <Image
+                    src={getImageSrc(imageData.folder, filename)}
+                    alt={`${category.label} ${filename.replace(/^\d+_/, "").replace(".png", "")}`}
+                    width={1100}
+                    height={800}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 800px"
+                    style={{ width: "100%", height: "auto" }}
+                    className="block"
+                    priority={idx === 0}
+                  />
+                  {categoryId === "three-three-ups" && filename === "7_display2.png" && (
+                    <div className="flex justify-end py-3 bg-[#ECF1F4] px-6">
+                      <Link
+                        href="/products/three-three-ups/display"
+                        className="inline-flex items-center text w-full rounded-4xl justify-center border border-[#3d7bd4] text-[#3d7bd4] px-5 py-4 text-sm font-medium hover:bg-[#3d7bd4] hover:text-white transition-colors bg-white "
+                      >
+                        자세히 보기 →
+                      </Link>
+                    </div>
+                  )}
+                </div>
               ))}
-              <Link
-                href="/contact"
-                className="w-full py-5 bg-[#3d7bd4] text-white text-center font-semibold text-base hover:bg-[#2f6bbf] transition-colors block"
-              >
+              <Link href="/contact" className="w-full py-5 bg-[#3d7bd4] text-white text-center font-semibold text-base hover:bg-[#2f6bbf] transition-colors block">
                 견적서 의뢰하기
               </Link>
             </div>
