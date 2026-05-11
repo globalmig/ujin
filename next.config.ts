@@ -9,6 +9,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    minimumCacheTTL: 60,
+  },
   async headers() {
     return [
       {

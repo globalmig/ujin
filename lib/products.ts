@@ -48,15 +48,15 @@ type ImageEntry = { folder: string; images: string[] };
 export const productImageMap: Record<string, ImageEntry> = {
   "single-ups": {
     folder: "SPT-301K_single-ups",
-    images: ["1_product-profile.png", "2_product-intro.png", "3_field-cases.png", "4_display.png", "5_rear.png", "6_tech-specs.png"],
+    images: ["1_product-profile2.png", "2_product-intro2.png", "3_field-cases.png", "4_display.png", "5_rear.png", "6_tech-specs.png"],
   },
   "three-single-ups": {
     folder: "SPT-100AK_three-single-ups",
-    images: ["1_product-profile.png", "2_problem.png", "3_strengths.png", "4_features.png", "5_field-cases.png", "6_maintenance.png", "7_rear.png", "8_tech-specs.png"],
+    images: ["1_product-profile2.png", "2_problem2.png", "3_strengths.png", "4_features.png", "5_field-cases2.png", "6_maintenance.png", "7_rear.png", "8_tech-specs.png"],
   },
   "three-three-ups": {
     folder: "SPT-3300_three-three-ups",
-    images: ["1_product-profile.png", "2_problem.png", "3_strengths.png", "4_features.png", "5_field-cases.png", "6_maintenance.png", "7_display2.png", "8_tech-specs.png"],
+    images: ["1_product-profile2.png", "2_problem2.png", "3_strengths.png", "4_features.png", "5_field-cases2.png", "6_maintenance.png", "7_display2.png", "8_tech-specs.png"],
   },
   "server-ups": {
     folder: "HP-900C_server-ups",
