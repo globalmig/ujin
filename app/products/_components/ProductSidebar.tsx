@@ -107,6 +107,20 @@ export default function ProductSidebar() {
             );
           })}
         </ul>
+        <div className="border border-t-0 border-gray-200 px-4 py-4 bg-white flex flex-col gap-2.5">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-semibold text-gray-500 w-10 shrink-0">Tel</span>
+            <span className="text-sm text-gray-800">02-894-8057</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-semibold text-gray-500 w-10 shrink-0">Fax</span>
+            <span className="text-sm text-gray-800">02-894-8058</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-semibold text-gray-500 w-10 shrink-0">E-mail</span>
+            <a href="mailto:ups8057@naver.com" className="text-xs text-[#009fe8] hover:underline break-all">ups8057@naver.com</a>
+          </div>
+        </div>
       </aside>
 
       {/* 모바일/태블릿: 드롭다운 */}

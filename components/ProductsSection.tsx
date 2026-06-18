@@ -97,10 +97,39 @@ export default function ProductsSection() {
           {/* Left text */}
           <div className="lg:w-100 shrink-0">
             <p className="text-sm font-bold text-[#377AD0] tracking-widest uppercase mb-3">BUSINESS AREA</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 leading-snug mb-4 md:mb-6">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 leading-snug mb-4">
               30년의 경험과 검증된 기술로
               <br /> 고객과 함께 합니다.
             </h2>
+            <div className="mb-6 flex flex-col gap-0 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+              <div className="flex items-center gap-4 px-5 py-3.5 bg-gray-50 border-b border-gray-100">
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#377AD0]/10 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#377AD0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.95 12 19.79 19.79 0 0 1 1.92 3.4 2 2 0 0 1 3.9 1.22h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.05-1.05a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </span>
+                <div>
+                  <p className="text-[10px] text-gray-400 font-semibold tracking-widest uppercase leading-none mb-0.5">Tel</p>
+                  <p className="text-sm font-bold text-gray-800 tracking-wide">02-894-8057</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 px-5 py-3.5 bg-gray-50 border-b border-gray-100">
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#377AD0]/10 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#377AD0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </span>
+                <div>
+                  <p className="text-[10px] text-gray-400 font-semibold tracking-widest uppercase leading-none mb-0.5">Fax</p>
+                  <p className="text-sm font-bold text-gray-800 tracking-wide">02-894-8058</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 px-5 py-3.5 bg-gray-50">
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#377AD0]/10 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#377AD0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+                </span>
+                <div>
+                  <p className="text-[10px] text-gray-400 font-semibold tracking-widest uppercase leading-none mb-0.5">E-mail</p>
+                  <a href="mailto:ups8057@naver.com" className="text-sm font-bold text-[#377AD0] hover:underline tracking-wide">ups8057@naver.com</a>
+                </div>
+              </div>
+            </div>
             <div className="hidden lg:flex">
               <NavButtons prev={prev} next={next} />
             </div>
