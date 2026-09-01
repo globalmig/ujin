@@ -10,8 +10,8 @@ export default function Footer() {
               <Image src="/image/common/logo-white.svg" alt="유진전원시스템 로고" fill sizes="160px" className="object-contain object-left" />
             </div>
             <p className="text-xs leading-relaxed text-white/70 md:max-w-215">
-              상호 : 유진전원시스템(주) &nbsp;|&nbsp; 대표자 : 손철기 &nbsp;|&nbsp; 사업자등록번호 : 138-02-68537 &nbsp;|&nbsp; 본사/공장 : 서울시 금천구 시흥대로 97 &nbsp;|&nbsp; TEL :
-              02-894-8057(대) &nbsp;|&nbsp; FAX : 02-894-8058 &nbsp;|&nbsp; EMAIL : ups8057@naver.com
+              상호 : 유진전원시스템(주) &nbsp;|&nbsp; 대표자 : 손철기 &nbsp;|&nbsp; 사업자등록번호 : 138-02-68537 &nbsp;|&nbsp; 본사 : 서울시 금천구 시흥대로 97 &nbsp;|&nbsp; 공장 : 인천시 서구
+              장고개로 117번길 &nbsp;|&nbsp; TEL : 02-894-8057(대) &nbsp;|&nbsp; FAX : 02-894-8058 &nbsp;|&nbsp; EMAIL : ups8057@naver.com
             </p>
           </div>
 
